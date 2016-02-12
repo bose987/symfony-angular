@@ -1,0 +1,22 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+    facebook_app_id: '1579713388968087'
+    facebook_app_secret: e8d8ea414be3376e31485a3580e48593
+    google_app_id: 347208389240-mcrkt21pgothj0i33n6bbn2ver4jgq0f.apps.googleusercontent.com
+    google_app_secret: Ii5Fxnp4skkGYOjJKvTDSgQc
+    sf_user: ashish.pune08@gmail.com
+    sf_pass: thakur@123
+    sf_token: zRDebrREOE0vFVyClRyYoTSH3

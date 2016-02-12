@@ -1,0 +1,46 @@
+<span class="spinner-class" us-spinner spinner-key="spinner-1" us-spinner="{color: white,radius:30, width:8, length: 16}" spinner-start-active="true"></span>
+<div class="container your-order" ng-show="orders.show">
+    <div class="row">
+    	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center">
+    		<h2>Your orders</h2>
+    	</div>
+   	</div>
+    <div class="row">
+    	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 your-order-items">
+         <div class="oreders"  data-ng-repeat="order in orders.myOrder">
+               <div class="row orderdesc">
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                        <h4 style="color:#A25F08;">Total amount : {{order.amount}} $</h4>                        
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                        <h4 style="color:#A25F08;">Order date : {{order.created_on | date : format : timezone}}</h4>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                        
+                    </div>
+               </div>
+                <div class="oreders-items">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width:40%">Product Description</th>
+                            <th>Discount</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr data-ng-repeat="data in order.order_items">
+                            <td>
+                                <img src="{{data.product.link}}" class="img-responsive cartImg" alt="{{data.product.name}}">
+                                <p class="cartItemName">{{data.product.name}}</p>
+                            </td>
+                            <th>{{data.discount}} %</td>                 
+                            <th>{{data.price}} $</td>                 
+                            <th>{{data.quantity}}</td>                 
+                            <th>{{(data.price - data.price * (data.discount/100) ) * data.quantity |setDecimal:2}} $</td>
+                        </tr>       
+                    </table>
+                </div>
+            </div>    		
+    	</div>
+   	</div>
+</div>

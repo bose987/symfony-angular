@@ -1,0 +1,7 @@
+services:
+    kernel.listener.controller_listener:
+        class: AppBundle\EventListener\ControllerListener
+        arguments:
+            - @service_container
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

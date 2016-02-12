@@ -1,0 +1,5 @@
+cron_task:
+    type: rest
+    prefix: /
+    resource: "CronBundle\\Controller\\CronTaskController"
+

@@ -1,0 +1,59 @@
+
+<div id="orderdetails" class="container-fluid orderdtl_main">
+    <div class="row-fluid content-backcolor">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-4"></div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12 bgclr">
+                <h4>Order Details </h4> 
+            </div> 
+            <div class="col-md-4 col-lg-4 col-sm-4"></div>   
+        </div>
+        <div class="col-sm-12 col-lg-12 col-md-12">
+                <span us-spinner spinner-key="orderdetailsSpinner" spinner-start-active="true"></span>
+        </div> 
+        <div class="row orderdiv">
+            <div class="col-md-2 col-lg-2 col-sm-2"></div>
+            <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 " ng-show="orderdetails.show">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Shipping address</td>
+                        <td>
+                            <p>{{orderdetails.ship_address}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total amount</td>
+                        <td>{{orderdetails.total_amount}} $</td>
+                    </tr>
+                    <tr>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td colspan="6">Order details of order id is {{orderdetails.order_id}}</td>
+                            </tr>
+                            <tr class="danger order-title">
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Save</th>
+                                <th>Order date</th>
+                            </tr>
+                            <tr ng-repeat="orderitem in orderdetails.order_item">
+                                <td> 
+                                    <img src="{{orderitem.link}}" class="img-responsive cartImg" alt="{{orderitem.name}}">
+                                    <p class="cartItemName">{{orderitem.name}}</p>
+                                </td>
+                                <td>{{orderitem.quantity}}</td>
+                                <td>{{orderitem.price}} $</td>
+                                <td>{{orderitem.discount}}%</td>
+                                <td>{{(orderitem.price * orderitem.quantity) *(orderitem.discount/100)  |setDecimal:2}} $</td>
+                                <td>{{orderitem.created_on | date : format : timezone}}</td>
+                            </tr>
+                        </table>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2"></div>            
+        </div>
+    </div>
+</div>

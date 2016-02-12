@@ -1,0 +1,12 @@
+bundles_user_admin:
+    type: rest
+    prefix: /secure/admin/user
+    resource: "Bundles\\UserBundle\\Controller\\AdminController"
+    name_prefix:  api_useradmin_ # naming collision
+
+bundles_user_user:
+    type: rest
+    prefix: /secure
+    resource: "Bundles\\UserBundle\\Controller\\UserController"
+    name_prefix:  api_userprofile_ # naming collision
+

@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row-fluid content-backcolor">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <table class="table table-bordered tab-shop cart_bg">
+                <!-- header -->
+                <tr class="well">
+                    <td style="width:30%"><b>Item</b></td>
+                    <td><b>Quantity</b></td>
+                    <td><b>Price</b></td>
+                    <td><b>Delivery Details</b></td>
+                    <td><b>SubTotal</b></td>
+                </tr> 
+                                        
+                <tr ng-show="!cart.isCartEmpty">
+                    <td class="tdCenter collapsible" colspan="5" style="text-align:center">
+                        Your cart is empty.
+                    </td>   
+                </tr>
+                <tr ng-repeat="ct in cart.countCart" ng-show="cart.isCartEmpty">
+                    <td> <img src="{{ct.img}}" class="img-responsive cartImg" alt="{{ct.name}}"><p class="cartItemName">{{ct.name}}</p></td>
+                    <td> <div class="row">
+                        <div class="col-md-5">
+                            <input type="text" id="qunty_inpt" ng-blur='cart.cardAddText(ct.id)' style="text-align:center" ng-model="cart.qunty_inpt[ct.id]" value="{{ct.qnty}}" class="txt_width">
+                        </div>
+                        <div class="col-md-7"> 
+                            <div class="input-append ">
+                            <button class="btn btn-success col-md-2 bottom-cart" type="button" ng-disabled=""ng-click="cart.cartAdd(ct.id)"><i class="fa fa-plus"></i></button>
+                            <button class="btn btn-primary col-md-2 bottom-cart margin-left10" type="button" ng-disabled="" ng-click="cart.cartRemove(ct.id)"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-danger col-md-2 bottom-cart margin-left10" type="button" ng-disabled="" ng-click="cart.removeCart(ct.id)"><i class="fa fa-times"></i></button>
+
+                        </div>
+                        </div>
+                    </div>        
+                    </td>
+                    <td>$ {{ct.cost |setDecimal:2}}</td>
+                    <td>Free</td>   
+                    <td>$ {{ct.totalcost |setDecimal:2}}</td>
+                </tr>
+               <tr>
+                   <td class="total_row" colspan="5"><span id="spn">Amount Payable: </span><strong>$ {{cart.grandTotal |setDecimal:2}}</strong>
+                   </td>
+               </tr>
+                <tr>
+
+                   <td colspan="5">                       
+                       <div class="row">
+                        <div class="col-md-12">                            
+                            <button ng-show="cart.isCartEmpty" ng-click="cart.placeOrder()" type="button" class="margin-left10 btn btn-warning pull-right" style=" background:#f77219;font-weight:bold" ng-click="cart.placeOrder();">PLACE ORDER</button>
+                            <button ui-sref="home" class="btn btn-primary pull-right">CONTINUE SHOPING</button>
+                       </div>
+                       </div>
+                   </td>
+               </tr>
+            </table>
+        </div>
+    </div>
+</div>

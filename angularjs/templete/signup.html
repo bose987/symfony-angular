@@ -1,0 +1,45 @@
+	<div class="signup">
+		<div class="signup-form">
+			<form name="signupForm">
+				<div class="signup-logo">
+					<h2>Sign up</h2>
+				</div>
+				 <div class="col-sm-12 col-lg-12 col-md-12">
+	                <span class="spinner-class" us-spinner spinner-key="spinner-1" us-spinner="{color: #FFF,radius:30, width:18, length: 26}"></span>
+	            </div>   
+				<div class="user-name">
+					<label>
+						Name *
+					</label>
+					<input type="text" data-ng-model="signup.name" placeholder="Enter Name" required class="form-control">
+				</div>
+				<div class="user-name">
+					<label>
+						Email Address *
+					</label>
+					<input type="email" data-ng-model="signup.email" placeholder="Enter Email" required class="form-control">
+				</div>
+				<div class="pwd">
+					<label>
+						Password *
+					</label>
+					<input type="password" data-ng-class="{'has-error':signupForm.confirmPassword.$error.match}" data-ng-model="signup.pwd" placeholder="Enter Password" required class="form-control">
+				</div>
+				<div class="pwd">
+					<label>
+						Conform password *
+					</label>
+					<input type="password" data-ng-class="{'has-error':signupForm.confirmPassword.$error.match}" data-match="signup.pwd" data-ng-model="signup.conformpwd" placeholder="Re-enter password" required class="form-control" name="confirmPassword" >
+					<div data-ng-show="signupForm.confirmPassword.$error.match" style="color:#a94442;">
+						<span>Passwords do not match!</span>
+					</div>
+				</div>
+				<div class="forgot-pwd">
+					<button ng-click="signup.register()" class="sign-btn btn btn-primary">Register</button>
+					<a ui-sref="login">
+						<span class="glyphicon glyphicon-log-in"></span> Login
+					</a>
+				</div>
+			</div>
+	</div>
+ 

@@ -1,0 +1,33 @@
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cronbundle:
+    resource: "@CronBundle/Resources/config/routing.yml"
+    type: rest
+    prefix:   /
+
+appbundle:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    type: rest
+    prefix:   /
+
+bundles_order:
+    resource: "@BundlesOrderBundle/Resources/config/routing.yml"
+    type: rest
+    prefix:   /
+
+bundles_security:
+    type: rest
+    resource: "@BundlesSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bundles_user:
+    type: rest
+    prefix: /
+    resource: "@BundlesUserBundle/Resources/config/routing.yml"
+
+bundles_product:
+    prefix:   /api
+    type: rest
+    resource: "@BundlesProductBundle/Resources/config/routing.yml"

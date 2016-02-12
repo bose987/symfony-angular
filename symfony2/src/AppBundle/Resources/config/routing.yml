@@ -1,0 +1,4 @@
+appbundle_app:
+    type: rest
+    prefix: /secure
+    resource: "AppBundle\\Controller\\AppController"

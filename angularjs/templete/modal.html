@@ -1,0 +1,66 @@
+     <script type="text/ng-template" id="modal.html">
+      <span us-spinner spinner-key="spinnenerr-2" spin-start-active="true"></span>
+            <div class="modal-header">
+                <button type="button" class="close"  ng-click="home.closeModel()">&times;</button>
+                <h4 class="modal-title">{{home.productDetail.name}}</h4>                
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 product-detail">
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 detail_product_img">
+                            <img src="{{home.productDetail.link}}" alt="" class="img-responsive">
+                            <div class="color-product" ng-show="home.productDetail.color">
+                               <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">Available colors  </div>
+                               <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                                    <div  style="width:20px;height:20px;background:{{home.productDetail.color}}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                            <p class="desc_detail"> {{home.productDetail.description}} </p>
+                        </div>                     
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>MRP</td>
+                                    <td>{{home.productDetail.list_price}} $</td>
+                                </tr>
+                                <tr>
+                                    <td>OFF</td>
+                                    <td>{{home.productDetail.discount}} %</td>
+                                </tr>
+                                <tr>
+                                    <td>Save</td>
+                                    <td>{{home.productDetail.list_price *(home.productDetail.discount/100)  |setDecimal:2}} $</td>
+                                </tr>
+                                <tr>
+                                    <td>Pay</td>
+                                    <td>{{home.productDetail.list_price - home.productDetail.list_price *(home.productDetail.discount/100)  |setDecimal:2}} $</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <button type="button" 
+                            class="btn btn-warning pull-right margin-left10"  
+                            ng-disabled="home.productDetail.quantity_available==0"   
+                            ng-click="home.buyNow(home.productDetail.id,home.productDetail.quantity_available,home.productDetail.list_price,home.productDetail.discount,home.productDetail.link,home.productDetail.name);">
+                            Buy now
+                        </button>
+                        
+                        <button type="button" 
+                            class="btn btn-danger pull-right" 
+                            data-dismiss="modal"
+                            ng-disabled="home.productDetail.quantity_available==0"   
+                            ng-click="home.addToCart(home.productDetail.id,home.productDetail.quantity_available,home.productDetail.list_price,home.productDetail.discount);">
+                            Add to cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="closeModal" type="button" class="btn btn-default" ng-click="home.closeModel()">Close</button>
+            </div>
+   </script>

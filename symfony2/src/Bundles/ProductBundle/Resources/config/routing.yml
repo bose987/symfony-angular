@@ -1,0 +1,17 @@
+bundles_product_products:
+    type: rest
+    prefix: /
+    resource: "Bundles\\ProductBundle\\Controller\\ProductsController"
+    name_prefix:  api_productproducts_ # naming collision
+
+bundles_product_cart:
+    type: rest
+    prefix: /
+    resource: "Bundles\\ProductBundle\\Controller\\CartController"
+    name_prefix:  api_productcart_ # naming collision
+
+bundles_product_product:
+    type: rest
+    prefix: /
+    resource: "Bundles\\ProductBundle\\Controller\\ProductController"
+    name_prefix:  api_productproduct_ # naming collision    

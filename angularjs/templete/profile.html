@@ -1,0 +1,109 @@
+
+
+<div class="container profile">        
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+            <h2>Welcome {{userName}} <i class="fa fa-smile-o"></i></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+            <uib-tabset justified="true">
+                <uib-tab heading="Personal Info">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6">
+                            <button class="pull-right btn  btn-primary edit" ng-click="profile.submit()" ng-show="profile.savedetail"> 
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                            <button class="pull-right btn  btn-danger edit" ng-click="profile.edit()" ng-show="profile.editdetail"> 
+                                <i class="fa fa-pencil-square-o"></i>
+                            </button>
+                            <table class="table">                                
+                                <tr>
+                                    <th>Name</th>
+                                    <td>
+                                        <div ng-show="profile.editdetail">{{profile.userdetails.first_name}} {{profile.userdetails.last_name}} </div>
+                                        <input ng-show="profile.savedetail" class="form-control" ng-model="profile.name" placeholder="Enter your name">  
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <th>Email</th>
+                                    <td>{{profile.userdetails.email_address}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Mobile number</th>
+                                    <td>
+                                        <div ng-show="profile.editdetail">
+                                            {{profile.userdetails.phone}}
+                                            <div ng-show="!profile.userdetails.phone">Please update your mobile number</div>
+                                        </div>
+                                        <input ng-show="profile.savedetail" class="form-control" ng-model="profile.mobile" placeholder="Enter your name">  
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>                      
+                    </div>    
+                </uib-tab>
+                <uib-tab heading="Shipping Address">
+                    <div class="row">
+                        <a ng-click="profile.addShippingAddress()" class="addAddr">
+                            <i class="fa fa-plus-circle fa-2x"></i>
+                        </a>
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+
+                            <div form-template ng-show="profile.saveShippingDetail"></div>
+                            
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6"  data-ng-repeat="add in profile.shippingAddress">
+                                <div class="address" ng-show="profile.editShippingDetail">
+                                    <p>
+                                        <div> {{add.firstname}} {{add.lastname}} </div>
+                                       {{add.address1}} {{add.address2}}
+                                       {{add.address3}}, {{add.city}}, {{add.zipcode}}
+                                        ,{{add.country}}      
+                                        <div ng-show"add.phone">
+                                            Mob : {{add.phone}}
+                                        </div>
+                                    </p>
+                                    <a ng-click="profile.delateShippingAddress(add.id)"><i class="fa fa-times"></i></a>
+                                    <a ng-click="profile.editShippingAddress(add.id)"><i class="fa fa-pencil-square-o"></i></a>
+                                </div>           
+                            </div>
+                        </div>
+                    </div>    
+                </uib-tab>
+                <uib-tab heading="Billing Address">
+                   <div class="row"> 
+                        <a ng-click="profile.addBillingAddress()" class="addAddr">
+                            <i class="fa fa-plus-circle fa-2x"></i>
+                        </a>
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                            <div form-template ng-show="profile.saveBillingDetail"></div>
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6"  data-ng-repeat="add in profile.billingAddress">
+                                <div class="address" ng-show="profile.editBillingDetail">
+                                    <p>
+                                        <div>
+                                            {{add.firstname}} {{add.lastname}}
+                                        </div>
+                                       {{add.address1}} {{add.address2}}
+                                       {{add.address3}}, {{add.city}} , {{add.zipcode}}
+                                        ,{{add.country}}      
+                                        <div ng-show"add.phone">                                            
+                                            Mob : {{add.phone}}
+                                        </div>
+                                    </p>
+                                    <a ng-click="profile.delateShippingAddress(add.id)"><i class="fa fa-times"></i></a>
+                                    <a ng-click="profile.editShippingAddress(add.id)"><i class="fa fa-pencil-square-o"></i></a>
+                                </div>           
+                            </div>
+
+                        </div>
+                    </div>      
+                </uib-tab>
+              </uib-tabset>
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <span class="spinner-class" us-spinner spinner-key="spinner-1" us-spinner="{color: white,radius:30, width:8, length: 16}" spinner-start-active="true"></span>
+            </div>   
+        </div>
+    </div>
+</div>
+

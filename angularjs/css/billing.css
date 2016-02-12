@@ -1,0 +1,48 @@
+  .space{
+    margin-bottom: 50px;
+  }
+  .bill_bg{
+    background-color:#2F2F2F;
+    color: #d6d6d6;
+    font-size: 16px;
+     border: 2px solid #2B2B2B;
+    border-radius: 25px;
+    margin-top: 20px;
+  }
+  .nxt_btn{
+    background:#3498db;
+    font-weight:bold;
+    font-size: 18px;
+  }
+  .bk_btn{
+    font-weight:bold;
+    font-size: 18px;
+  }
+  h4{font-weight: bold;color:white;}
+  .sbmt{
+    background:#9A9696;
+    text-align:center;
+    margin-top:15px;
+    padding-top:5px;
+    padding-bottom: 5px;
+  }
+  .btn-success{
+    font-size: 16px;
+  }
+  .checkbox{
+    display: inline;
+    width: 30px;
+    margin-top: 7px !important;
+      margin-bottom:7px !important;
+  }
+  strong{
+    font-size: 16px;
+  }
+  .pmt_btn{
+    background: #e74c3c;
+    font-weight:bold;
+    font-size: 18px;
+  }
+ .vld{
+  color:red;
+ }

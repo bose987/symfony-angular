@@ -1,0 +1,51 @@
+<form role="form">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="InputName">Enter First Name</label>
+                    <input type="text" class="form-control" ng-model="profile.EshippingAddress.firstname" placeholder="Enter Name" required=""> 
+                </div>
+                <div class="col-lg-6">
+                    <label for="InputName">Enter Last Name</label>
+                    <input type="text" class="form-control" ng-model="profile.EshippingAddress.lastname" placeholder="Enter Name" required="">                    
+                </div>
+            </div>
+        </div>    
+        <div class="form-group">
+            <label for="InputName">Enter Phone No</label>
+            <input type="text" class="form-control" ng-model="profile.EshippingAddress.phone"  placeholder="Enter Name" required="">                    
+        </div>
+        <div class="form-group">
+            <label for="InputName">Enter Address 1</label>
+            <textarea class="form-control" ng-model="profile.EshippingAddress.address1" placeholder="Enter Name" required=""> </textarea>                    
+        </div>
+        <div class="form-group">
+            <label for="InputName">Enter Address 2</label>
+            <textarea class="form-control" ng-model="profile.EshippingAddress.address2" placeholder="Enter Name" required=""> </textarea>                    
+        </div>
+        <div class="form-group">
+            <label for="InputName">Enter Address 3</label>
+            <textarea class="form-control" ng-model="profile.EshippingAddress.address3" placeholder="Enter Name" required=""> </textarea>                    
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="InputName">Enter City</label>
+                    <input type="text" class="form-control" ng-model="profile.EshippingAddress.city" placeholder="Enter Name" required=""> 
+                </div>
+                <div class="col-lg-6">
+                    <label for="InputName">Enter Country</label>
+                    <input type="text" class="form-control" ng-model="profile.EshippingAddress.country" placeholder="Enter Name" required="">                    
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="InputName">Enter Zip Code</label>
+            <input type="text" class="form-control" ng-model="profile.EshippingAddress.zipcode"placeholder="Enter Name" required="">                    
+        </div>
+        <input type="hidden" class="form-control" ng-model="profile.EshippingAddress.type">
+        <input type="button" value="Submit" ng-click="profile.submitAddr()" class="btn btn-info">
+        <input type="button" value="cancel" class="btn btn-danger" ng-click="profile.cancel()">
+    </div>
+</form>

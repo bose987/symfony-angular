@@ -1,0 +1,50 @@
+<nav class="navbar navbar-custom navbar-fixed-top">
+	<div>
+	<div class="navbar-header">
+	    <button ng-click="navCollapsed = !navCollapsed" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	        <span class="sr-only">Toggle navigation</span>
+	        <i class="fa fa-bars fa-2x"></i>
+	    </button>
+	    <div>
+	        <a ui-sref="home" class="your-brand" ><img src="http://dummyimage.com/300x150/337AB7/FFFFFF.jpg&text=Logo+come+here" alt=""></a>
+	    </div>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+	        <li ng-class="{active: topnav.isActive('/')}" id="store"><a ui-sref="home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+	      	<li ng-class="{active: topnav.isActive('/cart')}" id="cart"><a ui-sref="cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart 
+	        	<span class="cart">{{countCartdisp}}</span>
+	        </a></li>
+	        
+	        <li ng-show="!isLoginFlag" ng-class="{active: topnav.isActive('/login')}" id="store"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>	
+
+	        <!-- <li ng-show="isLoginFlag">
+	        	<a ng-click="topnav.logout()"><span class="glyphicon glyphicon-login"></span>&nbsp;Logout</a>
+	        </li>
+	         -->
+	        <li ng-show="isLoginFlag" class="dropdown navbar-right">
+	        	<a class="dropdown-toggle" data-toggle="dropdown" >
+	        		<img src="images/profile.jpg" class="img-circle profile-img"> {{userName}}
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a ui-sref="your-orders">
+							<i class="fa fa-shopping-cart"></i> Your Orders 
+						</a>
+					</li>
+					<li>
+						<a ui-sref="profile">
+							<i class="fa fa-user"></i> Profile 
+						</a>
+					</li>
+					<li>
+						<a ng-click="topnav.logout()">
+							<i class="fa fa-power-off"></i> Logout 
+						</a>
+					</li>
+				</ul>
+	        </li>
+	    </ul>
+	</div>
+	</div>
+</nav>

@@ -1,0 +1,21 @@
+<div class="menuTabs">
+	<div class="btn-group btn-group-justified" role="group" aria-label="...">
+	   <div class="btn-group" role="group" data-ng-repeat="cat in home.category">
+	   	<div ng-if="cat.subItem.length != 0">
+		    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      {{cat.name}}
+		      <span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu" ng-show="cat.subItem.length != 0">
+				<li data-ng-repeat="catSub in cat.subItem">
+					<a href="#" ng-click="home.showCatProd(catSub.id)"> {{catSub.name}}</a>
+				</li>
+		    </ul>
+	  	</div>
+	   	<div ng-if="cat.subItem.length == 0"> 
+			<button type="button" class="btn btn-default" ng-click="home.showCatProd(cat.id)">{{cat.name}}</button>			
+	  	</div>
+	  </div>
+	</div>
+</div>
+

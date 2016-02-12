@@ -1,0 +1,16 @@
+services:
+    security.authentication.provider:
+        class: Bundles\SecurityBundle\Security\Authentication\Provider\SecurityProvider
+        arguments:
+           - "" # User Provider
+           - "%kernel.cache_dir%/security/nonces"
+        public: false
+
+    security.authentication.token:
+        class: Bundles\SecurityBundle\Security\Authentication\Token\SecurityToken
+
+    security.authentication.listener:
+        class: Bundles\SecurityBundle\Security\Authentication\Firewall\SecurityListener
+        arguments: ["@security.token_storage", "@security.authentication.manager", "@service_container"]
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

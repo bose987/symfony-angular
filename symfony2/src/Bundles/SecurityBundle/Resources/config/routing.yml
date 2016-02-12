@@ -1,0 +1,17 @@
+bundles_security_login:
+    type: rest
+    prefix: /
+    resource: "Bundles\\SecurityBundle\\Controller\\LoginController"
+    name_prefix:  api_securitylogin_ # naming collision
+    
+bundles_security_signup:
+    type: rest
+    prefix: /
+    resource: "Bundles\\SecurityBundle\\Controller\\SignUpController"
+    name_prefix:  api_securitysignup_ # naming collision
+    
+bundles_security_facebook:
+    type: rest
+    prefix: /facebook
+    resource: "Bundles\\SecurityBundle\\Controller\\FacebookController"
+    name_prefix:  api_securityfacebook_ # naming collision

@@ -1,0 +1,27 @@
+.main_row{
+	margin-top:20px;
+	text-align:center
+}
+.product_list{
+margin:15px;
+padding:10px;
+}
+.img_div{
+ padding-top:15px;
+}
+.img_resol{
+	width:180px;
+	height:242px;
+}
+.ttl_font{
+	font-size:18px
+}
+.price_txt_clr{
+	color:#E74C3C	
+}
+.cart_bttn{
+	background-color: #e74c3c;
+	border-color: #e74c3c;
+	padding:8px 15px;
+	margin-top:10px;
+}
