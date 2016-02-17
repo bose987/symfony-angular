@@ -1,8 +1,12 @@
 # symfony-angular
-Angular: https://angular-symfony.herokuapp.com
-symfony API: https://angular-symfony-api.herokuapp.com
-
-Symfony Profiler: https://angular-symfony-api.herokuapp.com/app_dev.php/_profiler
+Angular
+----------------------------------
+Demo: https://angular-symfony.herokuapp.com
+ 
+symfony
+----------------------------------
+demo https://angular-symfony-api.herokuapp.com
+* Symfony Profiler: https://angular-symfony-api.herokuapp.com/app_dev.php/_profiler
 
 This is a sample ecommerce App 
 * Angular is the front end
