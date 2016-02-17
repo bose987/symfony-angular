@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-use Bundles\UserBundle\Entity\User;
+use Bundles\UserBundle\Entity\Users;
 use Bundles\UserBundle\Entity\Customer;
 use AppBundle\Validator\Security\SignUpValidator;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;

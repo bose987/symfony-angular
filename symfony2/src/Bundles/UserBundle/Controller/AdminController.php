@@ -6,7 +6,7 @@ use AppBundle\Controller\AppController;
 use Symfony\Component\HttpFoundation\Request;
 
 use FOS\RestBundle\Controller\Annotations As Rest;
-use Bundles\UserBundle\Entity\User;
+use Bundles\UserBundle\Entity\Users;
 use Bundles\UserBundle\Entity\Customer;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -24,7 +24,7 @@ class AdminController extends AppController
 	 */
 	
 	public function showUserAction( $id ) {
-		$objUser = $this->getDoctrine()->getManager()->getRepository('BundlesUserBundle:User')->fetchById( $id );
+		$objUser = $this->getDoctrine()->getManager()->getRepository('BundlesUserBundle:Users')->fetchById( $id );
 		return $objUser;
 	}
 	
@@ -92,7 +92,7 @@ class AdminController extends AppController
 		if( false == is_null( $strUserIds = $request->query->get('ids') ) ) {
 			$arrintUserIds = json_decode( $strUserIds, true );
 		}
-		$objUserRepository = $this->getDoctrine()->getManager()->getRepository('BundlesUserBundle:User');
+		$objUserRepository = $this->getDoctrine()->getManager()->getRepository('BundlesUserBundle:Users');
 		if( false == is_null( $arrintUserIds ) ) {
 			$users = $objUserRepository->findById( $arrintUserIds );
 		} else {

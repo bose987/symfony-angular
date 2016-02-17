@@ -35,6 +35,7 @@ class LoginController extends AppController
 		);
 	}
 	
+
 	/**
 	 * @Rest\Post("/login" )
 	 * @ApiDoc(
@@ -44,16 +45,17 @@ class LoginController extends AppController
 	 */
 	public function postLoginAction(Request $request)
 	{
-	
-		$objLoginvalidator = new LoginValidator( $this->createFormBuilder(), $request );
-		$objLoginvalidator->validate();
 		
-		if( $objLoginvalidator->hasError() ) {
-			return [ 'error' => $objLoginvalidator->getErrors() ];
-		}
+		
+//		$objLoginvalidator = new LoginValidator( $this->createFormBuilder(), $request );
+// 		$objLoginvalidator->validate();
+		
+// 		if( $objLoginvalidator->hasError() ) {
+// 			return [ 'error' => $objLoginvalidator->getErrors() ];
+// 		}
 		
 		$objEntityManager = $this->getDoctrine()->getEntityManager();
-		$objUser = $objEntityManager->getRepository('BundlesUserBundle:User')->findOneBy( $objLoginvalidator->getData() );
+		$objUser = $objEntityManager->getRepository('BundlesUserBundle:Users')->findOneBy( json_decode( $request->getContent(), true ) );
 
 		if( false == is_null( $objUser ) ) {
 			$objSecurityToken = $this->get('security.authentication.token');
@@ -69,7 +71,7 @@ class LoginController extends AppController
 				array(
 					$objUser->getId(),
 					$objSecurityToken->getSessionToken(),
-					$request->getClientIp(),
+// 					$request->getClientIp(),
 					$request->headers->get('User-Agent')
 				)
 			);

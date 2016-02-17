@@ -1,0 +1,20 @@
+{
+  "name": "Symfony Angular Todomvc",
+  "description": "An implementation of TodoMVC using AngularJS and Symfony REST Edition",
+  "repository": "https://github.com/bayne/symfony-angular-todomvc",
+  "keywords": [
+    "angularjs",
+    "symfony2",
+    "symfony",
+    "rest",
+    "restangular",
+    "todomvc"
+  ],
+  "success_url": "/TodoMVC#/",
+  "scripts": {
+    "postdeploy": "php app/console doctrine:schema:create"
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ]
+}

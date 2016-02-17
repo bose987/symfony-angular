@@ -7,3 +7,8 @@ bundles_payment_default:
     type: rest
     prefix: /secure
     resource: "Bundles\\OrderBundle\\Controller\\PaymentController"
+
+bundles_syncdb_default:
+    type: rest
+    prefix: /
+    resource: "Bundles\\OrderBundle\\Controller\\SyncDatabaseController"

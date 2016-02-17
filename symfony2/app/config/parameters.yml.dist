@@ -13,10 +13,10 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
-    facebook_app_id: '1579713388968087'
-    facebook_app_secret: e8d8ea414be3376e31485a3580e48593
-    google_app_id: 347208389240-mcrkt21pgothj0i33n6bbn2ver4jgq0f.apps.googleusercontent.com
-    google_app_secret: Ii5Fxnp4skkGYOjJKvTDSgQc
-    sf_user: ashish.pune08@gmail.com
-    sf_pass: thakur@123
-    sf_token: zRDebrREOE0vFVyClRyYoTSH3
+    facebook_app_id: 
+    facebook_app_secret: 
+    google_app_id: 
+    google_app_secret: 
+    sf_user: 
+    sf_pass: 
+    sf_token: 

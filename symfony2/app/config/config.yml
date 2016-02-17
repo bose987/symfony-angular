@@ -22,7 +22,7 @@ framework:
     trusted_proxies: ~
     session:
         cookie_lifetime: 0
-        cookie_domain: .pltw.lcl
+        cookie_domain: angular-symfony-api.herokuapp.com
     fragments:       ~
 
 # Twig Configuration
@@ -88,17 +88,4 @@ fos_rest:
         json: true
     body_listener: true
 
-fos_http_cache:
-    cache_control:
-        rules:
-            # the controls section values are used in a call to Response::setCache();
-            -
-                match:
-                    path: ^/notes
-                    methods: [GET, HEAD]
-                headers:
-                    cache_control: { public: true, max_age: 15, s_maxage: 30 }
-                    last_modified: "-1 hour"
-                    vary: [Accept-Encoding, Accept-Language]
-                    
 nelmio_api_doc: ~                    

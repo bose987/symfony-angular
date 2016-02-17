@@ -4,7 +4,8 @@ namespace Bundles\UserBundle\Controller;
 
 use AppBundle\Controller\AppController;
 use Symfony\Component\HttpFoundation\Request;
-use Bundles\UserBundle\Entity\User;
+use Bundles\UserBundle\Entity\Users;
+use Bundles\UserBundle\Entity\Address;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations As Rest;
 
@@ -35,7 +36,6 @@ class UserController extends AppController
 	 */
 	
 	public function putUserAction( Request $request ) {
-
 		try{
 			$objCustomer = $this->getCustomer();
 			$objCustomer->setPhone( $request->get('phone') );
@@ -66,7 +66,7 @@ class UserController extends AppController
 	
 	
 	/**
-	 * Edit User
+	 * Get User Addresses
 	 * @Rest\Options("/user/billing" )
 	 */
 	public function optionsUserBillingAction() {
@@ -81,7 +81,7 @@ class UserController extends AppController
 	}
 	
 	/**
-	 * Get User
+	 * Get User Addresses
 	 * @Rest\Get("/user/billing" )
 	 * @ApiDoc(
 	 *  resource=true,
@@ -89,31 +89,47 @@ class UserController extends AppController
 	 * )
 	 */
 	public function getUserBillingAction() {
-		return $this->objAddress->fetchBillingDetailsByCustomerId( (int) $this->getCustomerId(), true );
+		$arrmixAddresses 	= $this->objAddress->fetchAdressesByCustomerId( (int) $this->getCustomerId(), array( Address::TYPE_BILLING, Address::TYPE_SHIPPING ), true );
+		$arrmixTempAddress	= array();
+
+		foreach( $arrmixAddresses as $arrmixAddress ) {
+
+			if( Address::TYPE_BILLING == $arrmixAddress['type'] ) {
+				$arrmixTempAddress['billing_address'][] = $arrmixAddress;
+
+			} else if( Address::TYPE_SHIPPING == $arrmixAddress['type']  ) {
+				$arrmixTempAddress['shipping_address'][] = $arrmixAddress;
+			}
+		}
+
+		return $arrmixTempAddress;
+	}
+
+	/**
+	 * Edit User Billing Address
+	 * @Rest\Options("/user/billing/{id}" )
+	 */
+	public function optionsUserBillingAddressAction() {
+		return array(
+			'PUT' => array(
+					'description' => 'Update user details'
+			)
+		);
 	}
 	
 	/**
-	 * Get User
+	 * Edit User Billing Address
 	 * @Rest\Put("/user/billing/{id}" )
 	 * @ApiDoc(
 	 *  resource=true,
 	 *  description="Edit User Billing Details",
 	 * )
 	 */
-	public function putUserBillingAction( $id, Request $request ) {
+	public function putUserBillingAddressAction( $id, Request $request ) {
 		try{
 			$objBillingAddress = $this->objAddress->fetchBillingDetailsByIdByCustomerId( $id, (int) $this->getCustomerId() );
+			$objBillingAddress = $this->createAddress( $request, $objBillingAddress, Address::TYPE_BILLING );
 			
-			$objBillingAddress->setFirstname( $request->get('first_name') );
-			$objBillingAddress->setLastname( $request->get('last_name') );
-			$objBillingAddress->setCellphone( $request->get('cell_phone') );
-			$objBillingAddress->setPhone( $request->get('phone') );
-			$objBillingAddress->setAddress1( $request->get('address1') );
-			$objBillingAddress->setAddress2( $request->get('address2') );
-			$objBillingAddress->setAddress3( $request->get('address3') );
-			$objBillingAddress->setZipcode( $request->get('zip') );
-			$objBillingAddress->setCity( $request->get('city') );
-			$objBillingAddress->setCountry( $request->get('country') );
 			$this->objEntityManager->persist( $objBillingAddress );
 			$this->objEntityManager->flush();
 			
@@ -122,5 +138,161 @@ class UserController extends AppController
 			return ['success' => false ];
 		}
 	}
+
+	/**
+	 * Edit User Shipping Address
+	 * @Rest\Options("/user/shipping/{id}" )
+	 */
+	public function optionsUserShippingAction() {
+		return array(
+			'PUT' => array(
+					'description' => 'Update user details'
+			)
+		);
+	}
+
+	/**
+	 * Edit User Shipping Address
+	 * @Rest\Put("/user/shipping/{id}" )
+	 * @ApiDoc(
+	 *  resource=true,
+	 *  description="Edit User Shipping Details"
+	 * )
+	 */
+	public function putUserShippingAction( $id, Request $request ) {
+		try{
+			$objShippingAddress = $this->objAddress->fetchShippingDetailsByIdByCustomerId( $id, (int) $this->getCustomerId() );
+			$objShippingAddress = $this->createAddress( $request, $objShippingAddress, Address::TYPE_SHIPPING );
+
+			$this->objEntityManager->persist( $objShippingAddress );
+			$this->objEntityManager->flush();
+			
+			return ['success' => true ];
+		} catch( \Exception $e) {
+			return ['success' => false ];
+		}
+	}
+
+	/**
+	 * Delete User Address
+	 * @Rest\Options("/delete/address/{id}" )
+	 */
+	public function optionsUserAddressAction() {
+		return array(
+			'PUT' => array(
+					'description' => 'Delete user details'
+			)
+		);
+	}
 	
+	/**
+	 * Delete User Address
+	 * @Rest\Delete("/delete/address/{id}" )
+	 * @ApiDoc(
+	 *  resource=true,
+	 *  description="Delete User Address"
+	 * )
+	 */
+	public function deleteUserAddressAction( $id )
+	{	
+	    $objAddress = $this->objEntityManager->getRepository('BundlesUserBundle:Address')->find( $id );
+	    
+	    if( !$objAddress ) {
+	       return ['success' => false ];
+	    }
+
+	    $this->objEntityManager->remove( $objAddress );
+		$this->objEntityManager->flush();
+
+		return ['success' => true ];
+	}
+
+	/**
+	 * Create User Shipping Address
+	 * @Rest\Options("/address/shipping/create" )
+	 */
+	public function optionsUserAddressShippingAction() {
+		return array(
+			'PUT' => array(
+					'description' => 'Create user Shipping address'
+			)
+		);
+	}
+
+	/**
+	 * Create User Shipping Address
+	 * @Rest\Post("/address/shipping/create" )
+	 * @ApiDoc(
+	 *  resource=true,
+	 *  description="Create User Shipping Details"
+	 * )
+	 */
+	public function postUserAddressShippingAction( Request $request ) {
+		try{
+			$objShippingAddress = new Address();
+			$objShippingAddress = $this->createAddress( $request, $objShippingAddress, Address::TYPE_SHIPPING );
+			$objCustomer 		= $this->objEntityManager->getRepository('BundlesUserBundle:Customer')->find(  (int) $this->getCustomerId() );
+			
+			$objShippingAddress->setCustomer( $objCustomer );
+			$this->objEntityManager->persist( $objShippingAddress );
+			$this->objEntityManager->flush();
+			
+			return ['success' => true ];
+		} catch( \Exception $e) {
+			return array( $e->getMessage() );
+			return ['success' => false ];
+		}
+	}
+
+	/**
+	 * Create User Billing Address
+	 * @Rest\Options("/address/billing/create" )
+	 */
+	public function optionsUserAddressBillingAction() {
+		return array(
+			'PUT' => array(
+					'description' => 'Create user Billing address'
+			)
+		);
+	}
+
+	/**
+	 * Create User Billing Address
+	 * @Rest\Post("/address/billing/create" )
+	 * @ApiDoc(
+	 *  resource=true,
+	 *  description="Create user Billing address"
+	 * )
+	 */
+	public function postUserAddressBillingAction( Request $request ) {
+		try{
+			$objBillingAddress 	= new Address();
+			$objBillingAddress 	= $this->createAddress( $request, $objBillingAddress, Address::TYPE_BILLING );
+			$objCustomer 		= $this->objEntityManager->getRepository('BundlesUserBundle:Customer')->find(  (int) $this->getCustomerId() );
+			
+			$objBillingAddress->setCustomer( $objCustomer );
+			$this->objEntityManager->persist( $objBillingAddress );
+			$this->objEntityManager->flush();
+
+			return ['success' => true ];
+		} catch( \Exception $e) {
+			return ['success' => false ];
+		}
+	}
+
+	public function createAddress( $request, $objAddress, $intAddressTypeId ) {
+		$objAddress->setFirstname( $request->get('first_name') );
+		$objAddress->setLastname( $request->get('last_name') );
+		$objAddress->setType( $intAddressTypeId );
+		$objAddress->setCellphone( $request->get('cell_phone') );
+		$objAddress->setPhone( $request->get('phone') );
+		$objAddress->setAddress1( $request->get('address1') );
+		$objAddress->setAddress2( $request->get('address2') );
+		$objAddress->setAddress3( $request->get('address3') );
+		$objAddress->setZipcode( $request->get('zip') );
+		$objAddress->setCity( $request->get('city') );
+		$objAddress->setCountry( $request->get('country') );
+
+		return $objAddress;
+	}
 }

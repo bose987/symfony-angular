@@ -44,7 +44,7 @@ class Orders
     protected $customer;
     
     /**
-     * @ORM\Column(type="integer", length=200 )
+     * @ORM\Column(type="decimal", scale=2)
      */
     protected $amount;
 
@@ -173,13 +173,13 @@ class Orders
     /**
      * Set user
      *
-     * @param \Bundles\UserBundle\Entity\User $user
+     * @param \Bundles\UserBundle\Entity\Users $users
      *
      * @return Orders
      */
-    public function setUser(\Bundles\UserBundle\Entity\User $user = null)
+    public function setUser(\Bundles\UserBundle\Entity\Users $users = null)
     {
-        $this->user = $user;
+        $this->users = $users;
 
         return $this;
     }
@@ -187,11 +187,11 @@ class Orders
     /**
      * Get user
      *
-     * @return \Bundles\UserBundle\Entity\User
+     * @return \Bundles\UserBundle\Entity\Users
      */
-    public function getUser()
+    public function getUsers()
     {
-        return $this->user;
+        return $this->users;
     }
 
     /**

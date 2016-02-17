@@ -13,7 +13,7 @@ class AppController extends FOSRestController
 	
 	public function create() {
 		$this->objEntityManager = $this->getDoctrine()->getManager();
-		$this->objUserRepository = $this->objEntityManager->getRepository('BundlesUserBundle:User');
+		$this->objUserRepository = $this->objEntityManager->getRepository('BundlesUserBundle:Users');
 		$this->objCustomerRepository = $this->objEntityManager->getRepository('BundlesUserBundle:Customer');
 		$this->objAddress = $this->objEntityManager->getRepository('BundlesUserBundle:Address');
 	}

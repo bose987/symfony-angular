@@ -33,12 +33,12 @@ class OrderItems
     protected $quantity;
 
     /**
-     * @ORM\Column(type="integer", length=200 )
+     * @ORM\Column(type="decimal", scale=2)
      */
     protected $price;
 
     /**
-     * @ORM\Column(type="integer", length=200 )
+     * @ORM\Column(type="decimal", scale=2)
      */
     protected $discount;
 

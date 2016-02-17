@@ -24,9 +24,9 @@ class PaymentController extends AppController
 
 	/**
 	 * Put Payment
-	 * @Rest\POST("/payment" )
+	 * @Rest\Post("/payment" )
 	 */
-	public function getMakePaymentAction( Request $request ) {
+	public function postMakePaymentAction( Request $request ) {
 		
 		$objEntityManager 		= $this->getDoctrine()->getManager();
 		$objGateway 			= Omnipay::create('Stripe');
@@ -36,7 +36,7 @@ class PaymentController extends AppController
 		$order 					= $objEntityManager->getRepository('BundlesOrderBundle:Orders')->find( $arrmixPaymentDetails['order_id'] );
 		$objCustomer 			= $objEntityManager->getRepository('BundlesUserBundle:Customer')->find( (int) $this->objSession->get( 'user/customer_id' ) );
 		// Set secret key
-		$objGateway->setApiKey('sk_test_EU7usBJNPLxb5c1r48LPaT6B');
+		$objGateway->setApiKey('************');
 
 		// Make Form data
         $formData = [

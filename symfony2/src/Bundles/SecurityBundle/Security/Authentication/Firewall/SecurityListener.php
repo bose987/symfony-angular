@@ -43,7 +43,7 @@ class SecurityListener implements ListenerInterface{
 			array(
 				$objSession->get('user')['id'],
  				$objSession->get('security')['token'],
-				$event->getRequest()->getClientIp(),
+// 				$event->getRequest()->getClientIp(),
  				$event->getRequest()->headers->get('User-Agent')
 			)
 		);

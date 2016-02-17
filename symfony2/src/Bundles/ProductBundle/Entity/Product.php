@@ -38,7 +38,7 @@ class Product
     protected $product_number;
     
     /**
-     * @ORM\Column(type="integer", length=200 )
+     * @ORM\Column(type="decimal", scale=2 )
      */
     protected $list_price;
     
@@ -48,7 +48,7 @@ class Product
     protected $size;
     
     /**
-     * @ORM\Column(type="string", length=200 )
+     * @ORM\Column(type="text" )
      */
     protected $description;
     
@@ -58,7 +58,7 @@ class Product
     protected $color;
     
     /**
-     * @ORM\Column(type="string", length=200 )
+     * @ORM\Column(type="text" )
      */
     protected $link;
     
@@ -68,7 +68,7 @@ class Product
     protected $quantity_available;
     
     /**
-     * @ORM\Column(type="integer", nullable=true )
+     * @ORM\Column(type="decimal", scale=2, nullable=true )
      */
     protected $discount;
 

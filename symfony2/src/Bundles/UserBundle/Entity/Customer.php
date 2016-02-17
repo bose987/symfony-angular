@@ -4,7 +4,7 @@ namespace Bundles\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Bundles\UserBundle\Entity\User;
+use Bundles\UserBundle\Entity\Users;
 use Bundles\OrderBundle\Entity\Orders;
 use Bundles\OrderBundle\Entity\Payment;
 
@@ -35,9 +35,9 @@ class Customer
     protected $payment;
     
     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="customer")
+     * @ORM\OneToOne(targetEntity="Users", mappedBy="customer")
      */
-    protected $user;
+    protected $users;
     
     /**
      * @ORM\Column(type="string", length=100, unique = true )
@@ -55,7 +55,7 @@ class Customer
     protected $last_name;
     
     /**
-     * @ORM\Column(type="integer", length=15, nullable=true)
+     * @ORM\Column(type="string", length=15, nullable=true)
      */
     protected $phone;
     
@@ -278,15 +278,15 @@ class Customer
     }
 
     /**
-     * Set user
+     * Set users
      *
-     * @param \Bundles\UserBundle\Entity\User $user
+     * @param \Bundles\UserBundle\Entity\Users $users
      *
      * @return Customer
      */
-    public function setUser(\Bundles\UserBundle\Entity\User $user = null)
+    public function setUser(\Bundles\UserBundle\Entity\Users $users = null)
     {
-        $this->user = $user;
+        $this->users = $users;
 
         return $this;
     }
@@ -294,10 +294,10 @@ class Customer
     /**
      * Get user
      *
-     * @return \Bundles\UserBundle\Entity\User
+     * @return \Bundles\UserBundle\Entity\Users
      */
-    public function getUser()
+    public function getUsers()
     {
-        return $this->user;
+        return $this->users;
     }
 }

@@ -30,4 +30,4 @@ bundles_user:
 bundles_product:
     prefix:   /api
     type: rest
-    resource: "@BundlesProductBundle/Resources/config/routing.yml"
+    resource: "@BundlesProductBundle/Resources/config/routing.yml"	

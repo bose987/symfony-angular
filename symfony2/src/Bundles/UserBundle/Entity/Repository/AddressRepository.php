@@ -24,6 +24,25 @@ class AddressRepository extends EntityRepository
 		return $objQuery->getResult();
 	}
 	
+	public function fetchAdressesByCustomerId( $customerId, $arrintAddressTypeIds, $boolRetunArray = false ) {
+		$objQuery = $this->createQueryBuilder('b')
+		->select('b')
+		->join( 'b.customer', 'c' )
+		->where('c.id = :customer_id' )
+		->andWhere( 'b.type IN (:types)' )
+		->setParameters(
+				array(
+					'customer_id' => $customerId,
+					'types' => $arrintAddressTypeIds
+				)
+		)
+		->getQuery();
+		if( $boolRetunArray ) {
+			return $objQuery->getResult( Query::HYDRATE_ARRAY );
+		}
+		return $objQuery->getResult();
+	}
+
 	public function fetchBillingDetailsByIdByCustomerId( $id, $customerId, $boolRetunArray = false ) {
 		$objQuery = $this->createQueryBuilder('b')
 		->select('b')
@@ -38,8 +57,27 @@ class AddressRepository extends EntityRepository
 		)
 		->getQuery();
 		if( $boolRetunArray ) {
-			return $objQuery->getResult( Query::HYDRATE_ARRAY );
+			return $objQuery->getOneOrNullResult( Query::HYDRATE_ARRAY );
 		}
-		return $objQuery->getResult();
+		return $objQuery->getOneOrNullResult();
+	}
+
+	public function fetchShippingDetailsByIdByCustomerId( $id, $customerId, $boolRetunArray = false ) {
+		$objQuery = $this->createQueryBuilder('b')
+		->select('b')
+		->join( 'b.customer', 'c' )
+		->where('c.id = :customer_id AND b.type = :type AND b.id = :id' )
+		->setParameters(
+				array(
+					'customer_id' => $customerId,
+					'type' => Address::TYPE_SHIPPING,
+					'id' => $id
+				)
+		)
+		->getQuery();
+		if( $boolRetunArray ) {
+			return $objQuery->getOneOrNullResult( Query::HYDRATE_ARRAY );
+		}
+		return $objQuery->getOneOrNullResult();
 	}
 }

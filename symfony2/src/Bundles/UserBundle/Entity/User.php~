@@ -6,8 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Bundles\UserBundle\Entity\Customer;
 
 /**
- * @ORM\Entity(repositoryClass="Bundles\UserBundle\Entity\Repository\UserRepository")
- * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="Bundles\UserBundle\Entity\Repository\UsersRepository")
+ * @ORM\Table(name="users")
  */
 class User
 {

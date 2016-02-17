@@ -6,7 +6,7 @@ use AppBundle\Controller\AppController;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-use Bundles\UserBundle\Entity\User;
+use Bundles\UserBundle\Entity\Users;
 use Bundles\UserBundle\Entity\Customer;
 use AppBundle\Validator\Security\FacebookValidator;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -38,53 +38,63 @@ class FacebookController extends AppController
 	public function postLoginAction(Request $request)
 	{
 		
-		$objFacebookValidator = new FacebookValidator( $this->createFormBuilder( [] ), $request );
-		$objFacebookValidator->validate( ['code', 'clientId', 'redirectUri'] );
+// 		$objFacebookValidator = new FacebookValidator( $this->createFormBuilder( [] ), $request );
+// 		$objFacebookValidator->validate( ['code', 'clientId', 'redirectUri'] );
 		
-		if( $objFacebookValidator->hasError() ) {
-			return [ 'error' => $objFacebookValidator->getErrors() ];
-		}
+// 		if( $objFacebookValidator->hasError() ) {
+// 			return [ 'error' => $objFacebookValidator->getErrors() ];
+// 		}
 		
+// 		$accessTokenUrl = 'https://graph.facebook.com/v2.3/oauth/access_token';
+// 		$accessTokenUrl .= '?code=' . $objFacebookValidator->getData( 'code' );
+// 		$accessTokenUrl .= '&client_id=' . $objFacebookValidator->getData( 'clientId' );
+// 		$accessTokenUrl .= '&redirect_uri=' . $objFacebookValidator->getData( 'redirectUri' );
+// 		$accessTokenUrl .= '&client_secret=' . $this->container->getParameter('facebook_app_secret');
+		$arrData = json_decode( $request->getContent(), true );
 		$accessTokenUrl = 'https://graph.facebook.com/v2.3/oauth/access_token';
-		$accessTokenUrl .= '?code=' . $objFacebookValidator->getData( 'code' );
-		$accessTokenUrl .= '&client_id=' . $objFacebookValidator->getData( 'clientId' );
-		$accessTokenUrl .= '&redirect_uri=' . $objFacebookValidator->getData( 'redirectUri' );
-		$accessTokenUrl .= '&client_secret=' . $this->container->getParameter('facebook_app_secret');
+		$accessTokenUrl .= '?code=' . $arrData['code'];
+		$accessTokenUrl .= '&client_id=' . $arrData['clientId'];
+		$accessTokenUrl .= '&redirect_uri=' . $arrData['redirectUri'];
+		$accessTokenUrl .= '&client_secret=' . $this->container->getParameter('facebook_app_secret');		
+		
 		$strJsonResponse = $this->makeGetRequestToEndPoint( $accessTokenUrl );
 		
-		$objFacebookAccessTokenValidator = new FacebookValidator( $this->createFormBuilder() );
-		$objFacebookAccessTokenValidator->setDataByJson( $strJsonResponse );
-		$objFacebookAccessTokenValidator->validate( ['access_token', 'token_type', 'expires_in'] );
+// 		$objFacebookAccessTokenValidator = new FacebookValidator( $this->createFormBuilder() );
+// 		$objFacebookAccessTokenValidator->setDataByJson( $strJsonResponse );
+// 		$objFacebookAccessTokenValidator->validate( ['access_token', 'token_type', 'expires_in'] );
 		
-		if( $objFacebookAccessTokenValidator->hasError() ) {
-			return [ 'error' => $objFacebookAccessTokenValidator->getErrors() ];
-		}
+// 		if( $objFacebookAccessTokenValidator->hasError() ) {
+// 			return [ 'error' => $objFacebookAccessTokenValidator->getErrors() ];
+// 		}
 		
+		$arrDataToken = json_decode( $strJsonResponse, true );
 		$graphApiUrl = 'https://graph.facebook.com/v2.3/me';
-		$graphApiUrl .= '?access_token=' . $objFacebookAccessTokenValidator->getData( 'access_token' ); 
+		$graphApiUrl .= '?access_token=' . $arrDataToken['access_token']; 
 		$strJsonResponse = $this->makeGetRequestToEndPoint( $graphApiUrl );
 		
-		$objFacebookUserValidator = new FacebookValidator( $this->createFormBuilder() );
-		$objFacebookUserValidator->setDataByJson( $strJsonResponse );
-		$objFacebookUserValidator->validate( ['id', 'email', 'first_name', 'last_name', 'link', 'name', 'gender' ] );
+// 		$objFacebookUserValidator = new FacebookValidator( $this->createFormBuilder() );
+// 		$objFacebookUserValidator->setDataByJson( $strJsonResponse );
+// 		$objFacebookUserValidator->validate( ['id', 'email', 'first_name', 'last_name', 'link', 'name', 'gender' ] );
 		
-		if( $objFacebookUserValidator->hasError() ) {
-			return [ 'error' => $objFacebookUserValidator->getErrors() ];
-		}
+// 		if( $objFacebookUserValidator->hasError() ) {
+// 			return [ 'error' => $objFacebookUserValidator->getErrors() ];
+// 		}
 		
-		$objUser = $this->objEntityManager->getRepository('BundlesUserBundle:User')->fetchByEmail( $objFacebookUserValidator->getData('email') );
+		$arrUserData = json_decode( $strJsonResponse, true );
+		
+		$objUser = $this->objEntityManager->getRepository('BundlesUserBundle:Users')->fetchByEmail( $arrUserData['email'] );
 		
 		if( true == is_null( $objUser ) ) {
 			$objCustomer = new Customer();
-			$objCustomer->setFirstName( $objFacebookUserValidator->getData('first_name') );
-			$objCustomer->setLastName( $objFacebookUserValidator->getData('last_name') );
-			$objCustomer->setEmailAddress( $objFacebookUserValidator->getData('email') );
+			$objCustomer->setFirstName( $arrUserData['first_name'] );
+			$objCustomer->setLastName( $arrUserData['last_name'] );
+			$objCustomer->setEmailAddress( $arrUserData['email'] );
 			
-			$objUser = new User();
-			$objUser->setName( $objFacebookUserValidator->getData('name') );
-			$objUser->setEmail( $objFacebookUserValidator->getData('email') );
-			$objUser->setFacebookId( $objFacebookUserValidator->getData('id') );
-			$objUser->setFacebookAccessToken( $objFacebookAccessTokenValidator->getData( 'access_token' ) );
+			$objUser = new Users();
+			$objUser->setName( $arrUserData['name'] );
+			$objUser->setEmail( $arrUserData['email'] );
+			$objUser->setFacebookId( $arrUserData['id'] );
+			$objUser->setFacebookAccessToken( $arrUserData['access_token'] );
 			$objUser->setCustomer( $objCustomer );		
 	
 			$this->objEntityManager->persist( $objUser );
@@ -104,7 +114,7 @@ class FacebookController extends AppController
 			array( 
 				$objUser->getId(),
 				$objSecurityToken->getSessionToken(),
-				$request->getClientIp(),
+// 				$request->getClientIp(),
 				$request->headers->get('User-Agent')
 			)
 		);

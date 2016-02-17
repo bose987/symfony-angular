@@ -3,7 +3,7 @@
 namespace Bundles\SecurityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Bundles\UserBundle\Entity\User;
+use Bundles\UserBundle\Entity\Users;
 
 /**
  * Token
@@ -33,10 +33,10 @@ class Token
     protected $session_id;
     
     /**
-     * @ORM\OneToOne(targetEntity="Bundles\UserBundle\Entity\User")
+     * @ORM\OneToOne(targetEntity="Bundles\UserBundle\Entity\Users")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $user;
+    protected $users;
     
     /**
      * Get id
@@ -127,9 +127,9 @@ class Token
      *
      * @return Token
      */
-    public function setUser( User $user = null)
+    public function setUser( Users $users = null)
     {
-        $this->user = $user;
+        $this->users = $users;
 
         return $this;
     }
@@ -137,10 +137,10 @@ class Token
     /**
      * Get user
      *
-     * @return \Bundles\UserBundle\Entity\User
+     * @return \Bundles\UserBundle\Entity\Users
      */
-    public function getUser()
+    public function getUsers()
     {
-        return $this->user;
+        return $this->users;
     }
 }

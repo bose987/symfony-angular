@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Address
- * @ORM\Entity(repositoryClass="Bundles\UserBundle\Entity\Repository\BillingAddressRepository")
+ * @ORM\Entity(repositoryClass="Bundles\UserBundle\Entity\Repository\AddressRepository")
  * @ORM\Table(name="customer_address")
  */
 class Address
@@ -23,7 +23,7 @@ class Address
     private $id;
 
     /**
-     * @ORM\Column(name="type", type="integer", nullable=false)
+     * @ORM\Column(name="type", type="integer", nullable=false, options={"default" = 1} )
      */
     protected $type;
 
@@ -355,5 +355,29 @@ class Address
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return Address
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
