@@ -1,21 +1,18 @@
 <div class="menuTabs">
-	<div class="btn-group btn-group-justified" role="group" aria-label="...">
-	   <div class="btn-group" role="group" data-ng-repeat="cat in home.category">
-	   	<div ng-if="cat.subItem.length != 0">
-		    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		      {{cat.name}}
-		      <span class="caret"></span>
-		    </button>
-		    <ul class="dropdown-menu" ng-show="cat.subItem.length != 0">
-				<li data-ng-repeat="catSub in cat.subItem">
-					<a href="#" ng-click="home.showCatProd(catSub.id)"> {{catSub.name}}</a>
-				</li>
-		    </ul>
-	  	</div>
-	   	<div ng-if="cat.subItem.length == 0"> 
-			<button type="button" class="btn btn-default" ng-click="home.showCatProd(cat.id)">{{cat.name}}</button>			
-	  	</div>
-	  </div>
-	</div>
+	<ul class="nav list-group" >
+		<li><a class="list-group-item" ng-click="home.getAllProducts()"> All</a> </li>
+		<li data-ng-repeat="cat in home.category">
+			<a ng-if="cat.subItem.length != 0" class="list-group-item" data-toggle="collapse" data-target="#submenu{{cat.id}}" aria-expanded="false"> {{cat.name}} <span class="caret"></span></a>
+			
+			<ul ng-if="cat.subItem.length != 0" class="nav collapse" id="submenu{{cat.id}}" role="menu" aria-labelledby="btn-1">
+				<li><a class="list-group-item" data-ng-repeat="catSub in cat.subItem" ng-click="home.showCatProd(catSub.id)" style="padding-left:50px;"> {{catSub.name}}
+				</a></li>
+			</ul>
+			
+		
+			<a ng-if="cat.subItem.length == 0" class="list-group-item" ng-click="home.showCatProd(cat.id)"> {{cat.name}} </a>
+		</li>
+		
+		
+	</ul>
 </div>
-

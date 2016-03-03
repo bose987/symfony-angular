@@ -25,9 +25,7 @@ textarea{
 .order-title th{
     color: black;
 }
-.orderdtl_main *{
-    color: white;
-}
+
 .address{
     background-color:  #785F41;
     padding: 20px;
@@ -53,25 +51,9 @@ textarea{
 }
 .content-body{
     min-height: 700px;
-    margin: 20px 0 0 0;
 	/* fallback */
-	background-color: #1a82f7;
-	background-repeat: repeat-x;
-
-	/* Safari 4-5, Chrome 1-9 */
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727));
-
-	/* Safari 5.1, Chrome 10+ */
-	background: -webkit-linear-gradient(top, #2F2727, #1a82f7);
-
-	/* Firefox 3.6+ */
-	background: -moz-linear-gradient(top, #2F2727, #1a82f7);
-
-	/* IE 10 */
-	background: -ms-linear-gradient(top, #2F2727, #1a82f7);
-
-	/* Opera 11.10+ */
-	background: -o-linear-gradient(top, #2F2727, #1a82f7);
+	background-color: #E7E7E7;
+	
 } 
 #cart{
     margin-right: 13px;
@@ -86,7 +68,7 @@ textarea{
     margin-left: 20px;
 }
 .your-order *{
-    color:white;
+    color:black;
 }
 .profile-img{
     padding: 0;
@@ -106,7 +88,6 @@ a{
 }
 .content-body{
     min-height: 700px;
-    margin: 20px 0 0 0;
 }
 .customeFooter p{
     margin: 0px;
@@ -126,9 +107,10 @@ a{
    color:black;
    padding-right: 5px;  
 }
-body{
-    background-color: #222222 !important;
+.container {
+	padding-top: 25px;  
 }
+
 .cart_bg{
    background: white !important; 
    margin-top: 30px;

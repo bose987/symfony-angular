@@ -64,13 +64,8 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: auto;
-	background: #e8e6e6;
-    background: -moz-linear-gradient(top,#e8e6e6 0%,#d0cbcb 100%);
-    background: -o-linear-gradient(top,#e8e6e6 0%,#d0cbcb 100%);
-    background: -webkit-linear-gradient(top,#e8e6e6 0%,#d0cbcb 100%);
-    background: -ms-linear-gradient(top,#e8e6e6 0%,#d0cbcb 100%);
-    background: linear-gradient(to bottom,#e8e6e6 0%,#d0cbcb 100%);
-    background: -webkit-gradient(left top,left bottom,color-stop(0%,#e8e6e6),color-stop(100%,#d0cbcb));
+	background: #ffffff;
+   
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFE8E6E6',endColorstr='#FFD0CBCB',GradientType=0);
     box-shadow: inset 0px 2px 1px 0 rgba(255,255,255,0.5);
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.8);

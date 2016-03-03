@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row-fluid content-backcolor">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-lg-12 col-sm-12 table-responsive">
             <table class="table table-bordered tab-shop cart_bg">
                 <!-- header -->
                 <tr class="well">
@@ -17,12 +17,16 @@
                     </td>   
                 </tr>
                 <tr ng-repeat="ct in cart.countCart" ng-show="cart.isCartEmpty">
-                    <td> <img src="{{ct.img}}" class="img-responsive cartImg" alt="{{ct.name}}"><p class="cartItemName">{{ct.name}}</p></td>
-                    <td> <div class="row">
-                        <div class="col-md-5">
+                    <td>
+						<img src="{{ct.img}}" class="img-responsive cartImg" alt="{{ct.name}}">
+						<p class="cartItemName" style="min-width:250px;word-break:break-all;white-space: pre-line">{{ct.name}}</p>
+					</td>
+                    <td style="width:25%">
+					<div class="row">
+                        <div class="col-md-6" style="text-align:center">
                             <input type="text" id="qunty_inpt" ng-blur='cart.cardAddText(ct.id)' style="text-align:center" ng-model="cart.qunty_inpt[ct.id]" value="{{ct.qnty}}" class="txt_width">
                         </div>
-                        <div class="col-md-7"> 
+                        <div class="col-md-6"> 
                             <div class="input-append ">
                             <button class="btn btn-success col-md-2 bottom-cart" type="button" ng-disabled=""ng-click="cart.cartAdd(ct.id)"><i class="fa fa-plus"></i></button>
                             <button class="btn btn-primary col-md-2 bottom-cart margin-left10" type="button" ng-disabled="" ng-click="cart.cartRemove(ct.id)"><i class="fa fa-minus"></i></button>

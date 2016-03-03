@@ -14,6 +14,8 @@
 		vm.payment_id = "";
 		vm.nopayment = true;
 		vm.backtohome = backtohome;
+		vm.autofill = autofill;
+		vm.ship = [];
 
       function backtohome () {
         $state.go('home');
@@ -30,6 +32,20 @@
 			 "zip" : billing_data.zip,
 			 "country" : billing_data.country
 			};
+		}
+		
+		function autofill() {
+			console.log(vm.billing_info);
+			
+			vm.ship.fullname = vm.billing_info.name;
+			vm.ship.email = vm.billing_info.email;
+			vm.ship.address = vm.billing_info.address;
+			vm.ship.phone = vm.billing_info.phone;
+			vm.ship.state = vm.billing_info.state;
+			vm.ship.country = vm.billing_info.country;
+			vm.ship.zip = vm.billing_info.zip;
+			vm.ship.city = vm.billing_info.city;
+			console.log(vm.ship);
 		}
 
 		function shipping(shipping_data){

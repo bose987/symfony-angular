@@ -18,6 +18,7 @@
 	   	vm.isEmpty = false; 	
 	   	vm.closeModel = closeModel;	
   		vm.showCatProd = showCatProd;
+		vm.getAllProducts = getAllProducts;
   		var catTmp= [];
 		var modalInstance=null;
   		/**
@@ -48,6 +49,7 @@
 		* @returns products
 		*/
 		function getAllProducts () {
+			vm.isEmpty = false; 	
 			var req = ApiService.getAllProducts(httpConfig.url + "api/products");
 			req.then(function(response) {
 				vm.details = response;
@@ -112,6 +114,7 @@
 		                        "discount" : discount
 		                      }];
       			localStorage.setItem("countCart", JSON.stringify(countCart));
+				toastr.success( name + ' has been successfully added.');
       		}else {
       			countCart = JSON.parse(localStorage.getItem("countCart"));
       			var find = $filter('filter')(countCart, {id: id})[0];
@@ -126,9 +129,10 @@
 				                        "cost":list_price,
 				                        "discount" : discount
 				                      };
-                      countCart.push(countCartTmp);
-      				localStorage.setItem("countCart", JSON.stringify(countCart));	
-      			}else{
+                    countCart.push(countCartTmp);
+					localStorage.setItem("countCart", JSON.stringify(countCart));	
+					toastr.success( name + ' has been successfully added.');
+      			} else {
       				for(var i=0; i< countCart.length; i++ ) {
       					if(countCart[i].id == id){
       						var qnty_available = parseInt(countCart[i].quantity_available ,10);
@@ -152,6 +156,7 @@
 		          countCart = JSON.parse(localStorage.getItem("countCart"));
 		          $rootScope.countCartdisp =countCart.length; 
 		      }
+			  
 		}
 
 		/**

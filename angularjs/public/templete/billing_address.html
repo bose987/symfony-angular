@@ -1,221 +1,219 @@
 <div class="space"> 
-<div class="row" ng-init="confirmorder.billingForm=true">
- <form ng-show="confirmorder.billingForm">
-    <div class="row-fluid content-backcolor form-horizontal">
-        <div class="col-md-3"></div>
-        <div class="col-md-6" style="text-align: center;">
-          <div class="container-fluid bill_bg">
-              <h4>Billing Address</h4>
-              <hr>
-                 <div class="form-group">
-                    <label class="control-label col-sm-2">Full Name</label>
-                    <div class="col-md-10">
-                    <input  type="text" placeholder="Full Name"  ng-model="confirmorder.bill.fullname" class="form-control"  required >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2">Email</label>
-                    <div class="col-md-10">
-                     <input  type="email" placeholder="Email Id"  ng-model="confirmorder.bill.email" class="form-control"  required >
-                    </div>
-                  </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Address</label>
-                    <div class="col-md-10">
-                     <textarea class="form-control" rows="3"  placeholder="Address" ng-model="confirmorder.bill.address" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Phone</label>
-                    <div class="col-md-10">
-                     <input type="tel"  placeholder="Phone" ng-model="confirmorder.bill.phone" class="form-control" min="1" max="10" required>
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="control-label col-sm-2">City</label>
-                    <div class="col-md-4">
-                     <input placeholder="City" type="text" ng-model="confirmorder.bill.city" class="form-control" required>
-                    </div>
-                    <label class="control-label col-sm-2">State</label>
-                    <div class="col-md-4">
-                     <input placeholder="State" ng-model="confirmorder.bill.state"  type="text" class="form-control" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Zip</label>
-                    <div class="col-md-4">
-                     <input  placeholder="Zip" ng-model="confirmorder.bill.zip" type="text" class="form-control" required>
-                    </div>
-                    <label class="control-label col-sm-2">Country</label>
-                    <div class="col-md-4">
-                     <input  placeholder="Country" ng-model="confirmorder.bill.country" type="text" class="form-control" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit"  ng-click="confirmorder.billing(confirmorder.bill);confirmorder.shippingForm=true;confirmorder.billingForm=false;"  class="btn btn-primary nxt_btn">Next &nbsp;<i class="fa fa-arrow-circle-o-right"></i></button>
-                </div>
-          </div>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-  </form>
+	<div class="row" ng-init="confirmorder.billingForm=true">
+		<form ng-show="confirmorder.billingForm">
+			<div class="row-fluid content-backcolor form-horizontal">
+				<div class="col-md-3"></div>
+				<div class="col-md-6" style="text-align: center;">
+				  <div class="container-fluid bill_bg">
+					  <h4>Billing Address</h4>
+					  <hr>
+						 <div class="form-group">
+							<label class="control-label col-sm-2">Full Name</label>
+							<div class="col-md-10">
+							<input  type="text" placeholder="Full Name"  ng-model="confirmorder.bill.fullname" class="form-control"  required >
+							</div>
+						  </div>
+						  <div class="form-group">
+							<label class="control-label col-sm-2">Email</label>
+							<div class="col-md-10">
+							 <input  type="email" placeholder="Email Id"  ng-model="confirmorder.bill.email" class="form-control"  required >
+							</div>
+						  </div>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Address</label>
+							<div class="col-md-10">
+							 <textarea class="form-control" rows="3"  placeholder="Address" ng-model="confirmorder.bill.address" required></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Phone</label>
+							<div class="col-md-10">
+							 <input type="tel"  placeholder="Phone" ng-model="confirmorder.bill.phone" class="form-control" min="1" max="10" required>
+							</div>
+						</div>
+						 <div class="form-group">
+							<label class="control-label col-sm-2">City</label>
+							<div class="col-md-4">
+							 <input placeholder="City" type="text" ng-model="confirmorder.bill.city" class="form-control" required>
+							</div>
+							<label class="control-label col-sm-2">State</label>
+							<div class="col-md-4">
+							 <input placeholder="State" ng-model="confirmorder.bill.state"  type="text" class="form-control" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Zip</label>
+							<div class="col-md-4">
+							 <input  placeholder="Zip" ng-model="confirmorder.bill.zip" type="text" class="form-control" required>
+							</div>
+							<label class="control-label col-sm-2">Country</label>
+							<div class="col-md-4">
+							 <input  placeholder="Country" ng-model="confirmorder.bill.country" type="text" class="form-control" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<button type="submit"  ng-click="confirmorder.billing(confirmorder.bill);confirmorder.shippingForm=true;confirmorder.billingForm=false;"  class="btn btn-primary nxt_btn">Next &nbsp;<i class="fa fa-arrow-circle-o-right"></i></button>
+						</div>
+				  </div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+		</form>
+	</div>
+	<span class="spinner-class" us-spinner spinner-key="spinner-1"></span>
+
+	  <!--Shpping Form-->
+	<div class="row" ng-show="confirmorder.shippingForm">
+	 <form>
+		<div class="row-fluid content-backcolor form-horizontal">
+			<div class="col-md-3"></div>
+			<div class="col-md-6" style="text-align: center;">
+			  <div class="container-fluid bill_bg">
+				  <h4>Shipping Address</h4> 
+				  <hr>
+					<div class="form-group">
+						<label class="control-label col-sm-4">Same as Billing Address</label>
+						<div class="col-md-1">
+							<input type="checkbox" placeholder="Full Name"  ng-click="confirmorder.autofill();" class="form-control">
+						</div>
+					</div>
+					 <div class="form-group">
+						<label class="control-label col-sm-2">Full Name</label>
+						<div class="col-md-10">
+						<input  type="text" placeholder="Full Name"  ng-model="confirmorder.ship.fullname" class="form-control"  required >
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label class="control-label col-sm-2">Email</label>
+						<div class="col-md-10">
+						 <input  type="email" placeholder="Email Id"  ng-model="confirmorder.ship.email" class="form-control"  required >
+						</div>
+					  </div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Address</label>
+						<div class="col-md-10">
+						  <textarea class="form-control" rows="3"  placeholder="Address" ng-model="confirmorder.ship.address" required></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Phone</label>
+						<div class="col-md-10">
+						 <input type="tel"  placeholder="Phone" ng-model="confirmorder.ship.phone" class="form-control" min="1" max="10" required>
+						</div>
+					</div>
+					 <div class="form-group">
+						<label class="control-label col-sm-2">City</label>
+						<div class="col-md-4">
+						 <input placeholder="City" type="text" ng-model="confirmorder.ship.city" class="form-control" required>
+						</div>
+						<label class="control-label col-sm-2">State</label>
+						<div class="col-md-4">
+						 <input placeholder="State" ng-model="confirmorder.ship.state"  type="text" class="form-control" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Zip</label>
+						<div class="col-md-4">
+						 <input  placeholder="Zip" ng-model="confirmorder.ship.zip" type="text" class="form-control" required>
+						</div>
+						<label class="control-label col-sm-2">Country</label>
+						<div class="col-md-4">
+						 <input  placeholder="Country" ng-model="confirmorder.ship.country" type="text" class="form-control" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<button   ng-click="confirmorder.backtohome();" class="btn btn-danger bk_btn">Cancle</button>&nbsp;&nbsp;&nbsp;&nbsp;      
+						<button  ng-click="confirmorder.moveback('confirmorder');confirmorder.billingForm=true;confirmorder.shippingForm=false;" class="btn btn-success bk_btn"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;Back</button>&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="submit"  ng-click="confirmorder.shipping(confirmorder.ship);confirmorder.shippingForm=false;" class="btn btn-primary nxt_btn">Next &nbsp;<i class="fa fa-arrow-circle-o-right"></i></button>
+					</div>
+			  </div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	  </form>
+	</div>
+
+	  <!--Payment Form-->
+
+	<div class="row" ng-show="confirmorder.paymentForm">
+	 <form>
+		<div class="row-fluid content-backcolor form-horizontal">
+			<div class="col-md-3"></div>
+			<div class="col-md-6" style="text-align: center;">
+			  <div class="container-fluid bill_bg">
+				  <h4>Payment Details</h4> 
+				  <hr> 
+				<div id="credit-card-form" ng-model="creditCard" validate-card >
+				   <div class="form-group">
+						<label class="control-label col-md-3">Card Number:</label>
+					  <div class="col-md-6">
+						<input  type="text" placeholder="Card Number"  ng-model="creditCard.number" class="form-control"  required  format-card>
+					  </div>
+					  <div class="col-md-3">Card Type: <span class="vld">{{creditCard.type}}</span></div>  
+					</div>
+					 <div class="col-sm-12 col-lg-12 col-md-12">
+							<span us-spinner spinner-key="paymentSpin-1" spinner-start-active="false"></span>
+					</div> 
+					<div class="form-group">
+						<label class="control-label col-md-3">CVV:</label>
+					  <div class="col-md-6">
+						<input type="password" maxlength="3" ng-model="creditCard.cvc" class="form-control"  required >
+					  </div>
+					  <div class="col-md-3">  Valid: <span class="vld">{{creditCard.valid}} </span></div>  
+					</div>
+					 <div class="form-group">
+						<label class="control-label col-md-3">Exp Date:</label>
+					  <div class="col-md-3">
+						<select style="font-weight:bold" class="form-control" ng-model="creditCard.month">
+						<option value="">Month</option>
+						  <option value="01">01</option>
+						  <option value="02">02</option>
+						  <option value="03">03</option>
+						  <option value="04">04</option>
+						  <option value="05">05</option>
+						  <option value="06">06</option>
+						  <option value="07">07</option>
+						  <option value="08">08</option>
+						  <option value="09">09</option>
+						  <option value="10">10</option>
+						  <option value="11">11</option>
+						  <option value="12">12</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select ng-model="creditCard.year" class="form-control" style="font-weight:bold">
+						<option value="">Year</option>
+						  <option>2014</option>
+						  <option>2015</option>
+						  <option>2016</option>
+						  <option>2017</option>
+						  <option>2018</option>
+						  <option>2019</option>
+						  <option>2020</option>
+						  <option>2021</option>
+						  <option>2022</option>
+						  <option>2023</option>
+						  <option>2024</option>
+						  <option>2025</option>
+						  <option>2026</option>
+						  <option>2027</option>
+						  <option>2028</option>
+						</select>
+					
+				  </div>
+				  <div class="col-md-3">Exp valid: <span class="vld"> {{creditCard.expiry}}</span></div>
+				  </div>
+				  <div class="form-group">  
+						<button  ng-click="confirmorder.paymentForm=false;confirmorder.shippingForm=true;" class="btn btn-success bk_btn" ng-disabled="backButton"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;Back</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					  <button type="submit" ng-disabled="!verified();"  ng-click="confirmorder.order_payment(creditCard);backButton=true;" class="btn btn-danger pmt_btn">Pay Now</button>
+				  </div>
+				</div>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	  </form>
+
+
+	</div>
 </div>
-<span class="spinner-class" us-spinner spinner-key="spinner-1"></span>
-
-  <!--Shpping Form-->
-<div class="row" ng-show="confirmorder.shippingForm">
- <form>
-    <div class="row-fluid content-backcolor form-horizontal">
-        <div class="col-md-3"></div>
-        <div class="col-md-6" style="text-align: center;">
-          <div class="container-fluid bill_bg">
-              <h4>Shipping Address</h4> 
-              <hr>
-                 <div class="form-group">
-                    <label class="control-label col-sm-2">Full Name</label>
-                    <div class="col-md-10">
-                    <input  type="text" placeholder="Full Name"  ng-model="confirmorder.ship.fullname" class="form-control"  required >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2">Email</label>
-                    <div class="col-md-10">
-                     <input  type="email" placeholder="Email Id"  ng-model="confirmorder.ship.email" class="form-control"  required >
-                    </div>
-                  </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Address</label>
-                    <div class="col-md-10">
-                      <textarea class="form-control" rows="3"  placeholder="Address" ng-model="confirmorder.ship.address" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Phone</label>
-                    <div class="col-md-10">
-                     <input type="tel"  placeholder="Phone" ng-model="confirmorder.ship.phone" class="form-control" min="1" max="10" required>
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="control-label col-sm-2">City</label>
-                    <div class="col-md-4">
-                     <input placeholder="City" type="text" ng-model="confirmorder.ship.city" class="form-control" required>
-                    </div>
-                    <label class="control-label col-sm-2">State</label>
-                    <div class="col-md-4">
-                     <input placeholder="State" ng-model="confirmorder.ship.state"  type="text" class="form-control" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Zip</label>
-                    <div class="col-md-4">
-                     <input  placeholder="Zip" ng-model="confirmorder.ship.zip" type="text" class="form-control" required>
-                    </div>
-                    <label class="control-label col-sm-2">Country</label>
-                    <div class="col-md-4">
-                     <input  placeholder="Country" ng-model="confirmorder.ship.country" type="text" class="form-control" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button   ng-click="confirmorder.backtohome();" class="btn btn-danger bk_btn">Cancle</button>&nbsp;&nbsp;&nbsp;&nbsp;      
-                    <button  ng-click="confirmorder.moveback('confirmorder');confirmorder.billingForm=true;confirmorder.shippingForm=false;" class="btn btn-success bk_btn"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;Back</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="submit"  ng-click="confirmorder.shipping(confirmorder.ship);confirmorder.shippingForm=false;" class="btn btn-primary nxt_btn">Next &nbsp;<i class="fa fa-arrow-circle-o-right"></i></button>
-                </div>
-          </div>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-  </form>
-</div>
-
-  <!--Payment Form-->
-
-<div class="row" ng-show="confirmorder.paymentForm">
- <form>
-    <div class="row-fluid content-backcolor form-horizontal">
-        <div class="col-md-3"></div>
-        <div class="col-md-6" style="text-align: center;">
-          <div class="container-fluid bill_bg">
-              <h4>Payment Details</h4> 
-              <hr> 
-            <div id="credit-card-form" ng-model="creditCard" validate-card >
-               <div class="form-group">
-                    <label class="control-label col-md-3">Card Number:</label>
-                  <div class="col-md-6">
-                    <input  type="text" placeholder="Card Number"  ng-model="creditCard.number" class="form-control"  required  format-card>
-                  </div>
-                  <div class="col-md-3">Card Type: <span class="vld">{{creditCard.type}}</span></div>  
-                </div>
-                 <div class="col-sm-12 col-lg-12 col-md-12">
-                        <span us-spinner spinner-key="paymentSpin-1" spinner-start-active="false"></span>
-                </div> 
-                <div class="form-group">
-                    <label class="control-label col-md-3">CVV:</label>
-                  <div class="col-md-6">
-                    <input  type="text" placeholder="CVV"  ng-model="creditCard.cvc" class="form-control"  required >
-                  </div>
-                  <div class="col-md-3">  Valid: <span class="vld">{{creditCard.valid}} </span></div>  
-                </div>
-                 <div class="form-group">
-                    <label class="control-label col-md-3">Exp Date:</label>
-                  <div class="col-md-3">
-                    <select style="font-weight:bold" class="form-control" ng-model="creditCard.month">
-                    <option value="">Month</option>
-                      <option value="01">01</option>
-                      <option value="02">02</option>
-                      <option value="03">03</option>
-                      <option value="04">04</option>
-                      <option value="05">05</option>
-                      <option value="06">06</option>
-                      <option value="07">07</option>
-                      <option value="08">08</option>
-                      <option value="09">09</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select ng-model="creditCard.year" class="form-control" style="font-weight:bold">
-                    <option value="">Year</option>
-                      <option>2014</option>
-                      <option>2015</option>
-                      <option>2016</option>
-                      <option>2017</option>
-                      <option>2018</option>
-                      <option>2019</option>
-                      <option>2020</option>
-                      <option>2021</option>
-                      <option>2022</option>
-                      <option>2023</option>
-                      <option>2024</option>
-                      <option>2025</option>
-                      <option>2026</option>
-                      <option>2027</option>
-                      <option>2028</option>
-                    </select>
-                
-              </div>
-              <div class="col-md-3">Exp valid: <span class="vld"> {{creditCard.expiry}}</span></div>
-              </div>
-              <div class="form-group">  
-                    <button  ng-click="confirmorder.paymentForm=false;confirmorder.shippingForm=true;" class="btn btn-success bk_btn" ng-disabled="backButton"><i class="fa fa-arrow-circle-o-left"></i>&nbsp;Back</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button type="submit" ng-disabled="!verified();"  ng-click="confirmorder.order_payment(creditCard);backButton=true;" class="btn btn-danger pmt_btn">Pay Now</button>
-              </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-  </form>
-
-
-</div>
-</div>
-
-
-
-
-
-
-
-
